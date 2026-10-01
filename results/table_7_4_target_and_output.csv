@@ -1,0 +1,9 @@
+pipeline,training_target,output_setting,test_mae,test_mae_sd,test_rmse,phm_score
+Linear regression,Linear,Lower bound at 0,25.07,,30.88,9843.28
+Linear regression,Linear,"Clipped to [0, 125]",19.67,,24.22,2234.44
+Linear regression,Piecewise,Lower bound at 0,14.59,,17.59,499.94
+Linear regression,Piecewise,"Clipped to [0, 125]",14.51,,17.48,491.48
+XGBoost,Linear,Lower bound at 0,15.37,0.32,23.5,8866.26
+XGBoost,Linear,"Clipped to [0, 125]",10.09,0.31,14.36,477.69
+XGBoost,Piecewise,Lower bound at 0,8.58,0.07,12.01,245.09
+XGBoost,Piecewise,"Clipped to [0, 125]",8.59,0.08,12.03,245.37

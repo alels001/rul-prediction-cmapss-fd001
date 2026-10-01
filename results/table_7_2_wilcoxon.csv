@@ -1,0 +1,7 @@
+comparison,median_difference,p_raw,p_holm,significant_at_5pct
+LR vs XGBoost,+6.06,<0.0001,<0.0001,Yes
+LR vs LSTM,+5.32,<0.0001,0.0001,Yes
+LR vs Chronos-2,+5.22,<0.0001,<0.0001,Yes
+XGBoost vs LSTM,-1.06,0.0638,0.1915,No
+XGBoost vs Chronos-2,-1.11,0.2171,0.4341,No
+LSTM vs Chronos-2,+0.37,0.4151,0.4341,No

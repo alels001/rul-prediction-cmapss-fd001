@@ -1,0 +1,5 @@
+pipeline,mean_fitting_time_per_run,computation_reused_across_runs,hardware
+Linear regression,< 1 s,None,CPU
+XGBoost,22.6 s,None,CPU
+LSTM,69 s,None,Tesla T4
+Chronos-2,24 s for the regression head,566 s for embedding extraction,Tesla T4

@@ -1,0 +1,4 @@
+representation,inputs,linear_regression_val_mae,xgboost_val_mae
+"A, prediction cycle only",13,16.6,14.29
+"B, up to fifty recent cycles",65,13.93,8.55
+"C, full observed history",65,12.97,6.91

@@ -1,0 +1,5 @@
+pipeline,input,test_mae,test_mae_sd,test_rmse,phm_score
+Linear regression,Summary vector,14.51,,17.48,491.48
+XGBoost,Summary vector,8.59,0.08,12.03,245.37
+LSTM,Padded sequence,9.71,0.45,13.49,305.65
+Chronos-2,Padded sequence,8.95,0.4,12.08,239.04

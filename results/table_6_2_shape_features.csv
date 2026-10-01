@@ -1,0 +1,3 @@
+feature_set,inputs,linear_regression_val_mae,xgboost_val_mae
+Five statistics per sensor,65,12.97,6.91
+With curvature and slope ratio,91,12.82,7.59

@@ -1,0 +1,13 @@
+study,model_family,mae,rmse,phm_score,broad_protocol_alignment
+Zheng et al. [8],Recurrent (LSTM),,16.14,338,Broadly aligned
+Li et al. [9],Convolutional (DCNN),,12.61,273.7,Broadly aligned
+Ellefsen et al. [27],Semi-supervised + LSTM,,12.56,231,Broadly aligned
+Mo et al. [23],Transformer + gated convolution,,11.27,,Broadly aligned
+Li et al. [24],Transformer (DSFormer),,10.77,199.82,Broadly aligned
+Ma et al. [25],Transformer + graph convolution,,12.46,,Broadly aligned
+Guilherme [20],Recurrent (LSTM),9.14,12.57,,Broadly aligned
+Guilherme [20],Transformer (encoder-only),10.34,14.35,,Broadly aligned
+Yildirim & Afser [26],Linear (LDA + regression),,30.40,~4.7e3,"No, training pooled across all four subsets"
+Felicio [18],Random forest / XGBoost / BiLSTM,,,,"No, evaluated on N-CMAPSS"
+This work,XGBoost (summary vector),8.59,12.03,245.37,Reference protocol
+This work,"Chronos-2 (frozen, trained head)",8.95,12.08,239.04,Reference protocol

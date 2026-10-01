@@ -1,0 +1,30 @@
+# Core scientific stack
+numpy>=1.24
+pandas>=2.0
+scipy>=1.10
+pyarrow>=12.0          # parquet I/O for the processed datasets
+
+# Models
+scikit-learn>=1.3      # linear regression, ridge diagnostic, min-max scaling, grouped CV
+xgboost>=2.0
+tensorflow>=2.13       # LSTM with Masking; GPU build required in practice
+
+# Chronos-2 (frozen backbone + trained regression head)
+chronos-forecasting==2.3.1
+torch>=2.0
+
+# Statistics
+statsmodels>=0.14      # Holm step-down correction
+
+# Plotting
+matplotlib>=3.7
+seaborn>=0.12
+
+# Notebooks
+jupyter>=1.0
+ipykernel>=6.0
+
+# Note on pinning: chronos-forecasting is pinned because the thesis names that
+# version. The remaining floors are the versions the APIs used here are stable
+# in; the exact versions of the original runs were not recorded, so they are not
+# claimed here.

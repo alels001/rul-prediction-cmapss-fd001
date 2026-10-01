@@ -1,0 +1,5 @@
+smoothing_window,linear_regression_val_mae,xgboost_val_mae
+None,12.97,7.02
+5 cycles,12.45,7.22
+10 cycles,13.04,8.0
+20 cycles,13.82,8.2
