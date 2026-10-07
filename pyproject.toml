@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rul"
+version = "0.1.0"
+description = "Remaining Useful Life prediction service for NASA C-MAPSS FD001 (XGBoost, 65 summary features)."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Ali Elshafey" }]
+requires-python = ">=3.11"
+# Runtime dependencies live in requirements-serve.txt (pinned) so that the
+# Docker image and CI install exactly the same versions.
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["rul*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.coverage.run]
+source = ["rul"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+# The research notebooks and the original preprocessing module are kept as the
+# thesis record and are not linted.
+extend-exclude = ["notebooks", "src/preprocessing.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
