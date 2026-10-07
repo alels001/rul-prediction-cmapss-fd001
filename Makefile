@@ -33,7 +33,7 @@ train:  ## Train the model and write artifacts to models/  (Phase 1)
 evaluate:  ## Score the trained model on the 100 test engines (fails if MAE > 9.5)
 	$(BIN)/python -m rul.evaluate --max-mae 9.5
 
-serve:  ## Run the API locally on port 8000  (Phase 3)
+serve:  ## Run the API locally on http://127.0.0.1:8000 (docs at /docs)
 	$(BIN)/uvicorn rul.api.main:app --reload --port 8000
 
 docker:  ## Build the Docker image  (Phase 4)
