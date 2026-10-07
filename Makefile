@@ -3,7 +3,7 @@ PYTHON ?= python3
 VENV   ?= .venv-serve
 BIN    := $(VENV)/bin
 
-.PHONY: help install lint format test train evaluate serve docker clean
+.PHONY: help install lint format test test-all train evaluate serve docker clean
 
 help:  ## List available commands
 	@grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-10s %s\n", $$1, $$2}'
@@ -21,14 +21,17 @@ format:  ## Auto-format and fix lint issues
 	$(BIN)/ruff format src tests
 	$(BIN)/ruff check --fix src tests
 
-test:  ## Run the test suite with coverage
+test:  ## Run the fast tests (synthetic data, seconds)
+	$(BIN)/pytest -m "not slow" --cov --cov-report=term-missing
+
+test-all:  ## Run every test, including the real-data checks (needs data/)
 	$(BIN)/pytest --cov --cov-report=term-missing
 
 train:  ## Train the model and write artifacts to models/  (Phase 1)
 	$(BIN)/python -m rul.train
 
-evaluate:  ## Score the trained model on the 100 test engines  (Phase 1)
-	$(BIN)/python -m rul.evaluate
+evaluate:  ## Score the trained model on the 100 test engines (fails if MAE > 9.5)
+	$(BIN)/python -m rul.evaluate --max-mae 9.5
 
 serve:  ## Run the API locally on port 8000  (Phase 3)
 	$(BIN)/uvicorn rul.api.main:app --reload --port 8000

@@ -151,3 +151,24 @@ def test_command_line_train_then_evaluate(tmp_path, capsys):
     md = json.loads((out / METADATA_FILE).read_text())
     assert md["test_metrics"]["n_engines"] == 3
     assert "MAE" in capsys.readouterr().out
+
+
+def test_quality_gate_blocks_a_model_that_is_too_weak(trained, tmp_path):
+    from rul import evaluate as evaluate_cli
+
+    _, model_dir = trained
+    write_cmapss(make_fleet(n_engines=3, seed=5), tmp_path / "test.txt")
+    (tmp_path / "rul.txt").write_text("5\n15\n25\n")
+    common = [
+        "--model-dir",
+        str(model_dir),
+        "--test-file",
+        str(tmp_path / "test.txt"),
+        "--rul-file",
+        str(tmp_path / "rul.txt"),
+    ]
+
+    with pytest.raises(SystemExit, match="QUALITY GATE FAILED"):
+        evaluate_cli.main([*common, "--max-mae", "0.001"])  # impossible to meet
+
+    evaluate_cli.main([*common, "--max-mae", "1000"])  # easy to meet: no exception
