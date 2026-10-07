@@ -22,6 +22,9 @@ include = ["rul*"]
 testpaths = ["tests"]
 addopts = "-q"
 pythonpath = ["."]
+markers = [
+    "slow: needs the NASA data and trains the full model (run with `make test-all`)",
+]
 
 [tool.coverage.run]
 source = ["rul"]

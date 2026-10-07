@@ -52,6 +52,12 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--model-dir", type=Path, default=config.MODELS_DIR)
     parser.add_argument("--test-file", type=Path, default=config.TEST_FILE)
     parser.add_argument("--rul-file", type=Path, default=config.RUL_FILE)
+    parser.add_argument(
+        "--max-mae",
+        type=float,
+        default=None,
+        help="Quality gate: exit with an error if the test MAE exceeds this value.",
+    )
     args = parser.parse_args(argv)
 
     model = RULModel.load(args.model_dir)
@@ -66,6 +72,13 @@ def main(argv: list[str] | None = None) -> None:
     model.metadata["test_metrics"] = {k: round(v, 4) for k, v in metrics.items()}
     (Path(args.model_dir) / METADATA_FILE).write_text(json.dumps(model.metadata, indent=2))
     print(f"Metrics written to {args.model_dir}/{METADATA_FILE}")
+
+    if args.max_mae is not None:
+        if metrics["mae"] > args.max_mae:
+            raise SystemExit(
+                f"QUALITY GATE FAILED: MAE {metrics['mae']:.2f} > allowed {args.max_mae:.2f}"
+            )
+        print(f"Quality gate passed: MAE {metrics['mae']:.2f} <= {args.max_mae:.2f}")
 
 
 if __name__ == "__main__":
