@@ -64,3 +64,9 @@ desktop.ini
 *.key
 credentials.json
 client_secret*.json
+
+# MLOps — serving venv and trained artifacts (artifacts are published as
+# GitHub Release assets / registry entries, not committed)
+.venv-serve/
+models/*
+!models/.gitkeep

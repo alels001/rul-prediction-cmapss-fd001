@@ -1,0 +1,13 @@
+# Runtime dependencies for training and serving the XGBoost RUL model.
+# Exact pins: the Docker image, CI and local runs must use identical versions.
+# The research stack (TensorFlow, PyTorch, Chronos-2, Jupyter) stays in
+# requirements.txt and is NOT installed here.
+numpy==2.5.3
+pandas==3.0.6
+scikit-learn==1.9.1
+xgboost==3.4.1
+joblib==1.6.0
+PyYAML==6.0.3
+fastapi==0.142.2
+uvicorn[standard]==0.54.0
+pydantic==2.13.5
