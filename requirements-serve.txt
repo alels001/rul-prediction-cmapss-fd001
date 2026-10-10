@@ -5,7 +5,10 @@
 numpy==2.5.3
 pandas==3.0.6
 scikit-learn==1.9.1
-xgboost==3.4.1
+# Linux (Docker, CI, Azure): CPU-only build, without the 345 MB NVIDIA GPU library.
+# macOS has no CPU-only build; the regular package is used there.
+xgboost-cpu==3.4.1; sys_platform == "linux"
+xgboost==3.4.1; sys_platform != "linux"
 joblib==1.6.0
 PyYAML==6.0.3
 fastapi==0.142.2

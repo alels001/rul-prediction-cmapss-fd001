@@ -1,0 +1,31 @@
+# Files Docker should NOT send into the build.
+# Smaller build context = faster builds, smaller images, no secrets or data leaking in.
+
+# Git history and local environments
+.git
+.venv*
+**/__pycache__
+**/*.pyc
+
+# Tool caches
+.pytest_cache
+.ruff_cache
+.coverage
+htmlcov
+
+# Research material: not needed to serve predictions
+notebooks/
+docs/
+figures/
+results/
+
+# NASA data must never be baked into the image
+data/
+
+# Development only
+tests/
+examples/
+*.patch
+
+# macOS
+.DS_Store
